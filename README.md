@@ -70,25 +70,48 @@ plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 plt.title('Original Image')
 plt.axis('off')
 ```
-![image](https://github.com/user-attachments/assets/67ec6190-7635-4614-a92a-7aeda2453ec0)
+![Screenshot 2024-09-14 101053](https://github.com/user-attachments/assets/a702e451-ec20-4df9-b24f-d1e4e1a0f2ed)
 
 
 ### ii)Draw Shapes and Add Text
 
 ```
-image_with_shapes = image.copy()
-cv2.line(image_with_shapes, (0, 0), (image.shape[1], image.shape[0]), (255, 0, 0), 2)  # Line
-cv2.circle(image_with_shapes, (image.shape[1] // 2, image.shape[0] // 2), 50, (0, 255, 0), 2)  # Circle
-cv2.rectangle(image_with_shapes, (50, 50), (150, 150), (0, 0, 255), 2)  # Rectangle
-cv2.putText(image_with_shapes, 'OpenCV', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)  # Text
+height, width, _ = img.shape
 
-plt.subplot(3, 3, 2)
-plt.imshow(cv2.cvtColor(image_with_shapes, cv2.COLOR_BGR2RGB))
-plt.title('Image with Shapes and Text')
-plt.axis('off')
+# Define start and stop points based on the image size
+start = (9, 9)  # Slight offset from the top left corner
+stop = (width - 9, height - 9)  # Slight offset from the bottom right corner
+
+# Define the rectangle color and thickness
+color = (100, 255, 100)
+thickness = 9
+
+# Draw the rectangle
+res_img = cv2.rectangle(img, start, stop, color, thickness)
+
+# Display the image with the rectangle
+cv2.imshow('Image Window', res_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+# Get image dimensions
+height, width, _ = img.shape
+
+# Calculate the center of the image
+center_coordinates = (width // 2, height // 2)
+
+# Draw the circle at the center with a radius of 30 and thickness of 5
+res = cv2.circle(img, center_coordinates, 30, (255, 0, 0), 5)
+
+# Display the image with the circle
+cv2.imshow('Image Window', res)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
 ```
+![Screenshot 2024-09-14 105028](https://github.com/user-attachments/assets/853c60ae-9cc5-43d4-ad3c-61a7a7fc8a9e)
 
-![image](https://github.com/user-attachments/assets/257ec635-0eb4-4617-9a0a-5658932e9f24)
+![Screenshot 2024-09-14 105522](https://github.com/user-attachments/assets/c68f1702-8daa-41f2-8a22-f4155b603e9a)
 
 
 ### iii)Image Color Conversion
@@ -124,7 +147,7 @@ plt.title('HSV to RGB')
 plt.axis('off')
 ```
 
-![image](https://github.com/user-attachments/assets/79e8273f-5724-46da-8181-35704707f85f)
+![Screenshot 2024-09-14 101831](https://github.com/user-attachments/assets/7caf2bc2-1494-444a-ac6a-b1631e520d4b)
 
 ### iv)Access and Manipulate Image Pixels
 
@@ -140,49 +163,94 @@ plt.title('Image with Manipulated Pixels')
 plt.axis('off')
 ```
 
-![image](https://github.com/user-attachments/assets/97830fbe-635c-4203-b250-6da377cf43a1)
+![Screenshot 2024-09-14 101259](https://github.com/user-attachments/assets/68ad884b-0ade-4e89-8bfb-4f3a9a1c3560)
+![Screenshot 2024-09-14 105920](https://github.com/user-attachments/assets/c6662ddf-e7f2-4ac4-98aa-5d8675f537b0)
+![Screenshot 2024-09-14 110041](https://github.com/user-attachments/assets/79d02fad-5076-4b1a-9700-a242fc82ecd5)
+![Screenshot 2024-09-14 110352](https://github.com/user-attachments/assets/0b2092e7-ccda-4fdd-abd5-f3bf7f0ef586)
+
 
 ### v)Image Resizing
 ```
+import cv2
+import matplotlib.pyplot as plt
+
+# Load the image
+image = cv2.imread('dog.jpeg')  # Make sure to use the correct path to your image
+
+# Resize the image
 resized_image = cv2.resize(image, (image.shape[1] // 2, image.shape[0] // 2))
-plt.subplot(3, 3, 8)
-plt.imshow(cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB))
+
+# Setup for displaying the image using Matplotlib
+plt.subplot(3, 3, 8)  # Positioning the image at the 8th subplot in a 3x3 grid
+plt.imshow(cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for displaying
 plt.title('Resized Image')
-plt.axis('off')
+plt.axis('off')  # Turn off the axis
+
+# Display the plot
+plt.show()
+
 ```
-![image](https://github.com/user-attachments/assets/1ada6194-39f2-473f-99bc-d9b86edc6f2c)
+![Screenshot 2024-09-14 111351](https://github.com/user-attachments/assets/b58e6158-f799-4d1d-9410-08439e4499f4)
 
 
 ### vi)Image Cropping
 ```
-cropped_image = image[50:150, 50:150]
-plt.subplot(3, 3, 9)
-plt.imshow(cv2.cvtColor(cropped_image, cv2.COLOR_BGR2RGB))
+import cv2
+import matplotlib.pyplot as plt
+
+# Load the image using cv2
+image = cv2.imread('dog.jpeg')
+
+# Crop the image (e.g., keeping the center portion)
+# Let's say you want to crop the image by slicing from [y1:y2, x1:x2]
+crop_img = image[100:400, 150:450]  # Adjust these numbers based on your image size
+
+# Plot the cropped image
+plt.subplot(3, 3, 8)  # Position it in the 8th subplot of a 3x3 grid
+plt.imshow(cv2.cvtColor(crop_img, cv2.COLOR_BGR2RGB))  # Convert from BGR to RGB for correct color display
 plt.title('Cropped Image')
-plt.axis('off')
+plt.axis('off')  # Hide the axes
+
+plt.show()  # Display the cropped image
+
 
 ```
-![image](https://github.com/user-attachments/assets/172da625-36fa-4907-b20b-0d0b64f7c4d4)
+![Screenshot 2024-09-14 111637](https://github.com/user-attachments/assets/ee1dd366-906a-4898-a6c2-1b0816479a96)
 
 
 ### vii)Image Flipping
 ```
+import cv2
+import matplotlib.pyplot as plt
+
+# Load the image using cv2
+image = cv2.imread('dog.jpeg')
+
+# Flip the image
 flipped_image_horizontal = cv2.flip(image, 1)  # Horizontal flip
 flipped_image_vertical = cv2.flip(image, 0)    # Vertical flip
 
+# Plot the horizontally and vertically flipped images
 plt.figure(figsize=(10, 8))
-plt.subplot(1, 2, 1)
+
+# Horizontally flipped image
+plt.subplot(1, 2, 1)  # 1 row, 2 columns, position 1
 plt.imshow(cv2.cvtColor(flipped_image_horizontal, cv2.COLOR_BGR2RGB))
 plt.title('Flipped Horizontally')
 plt.axis('off')
 
-plt.subplot(1, 2, 2)
+# Vertically flipped image
+plt.subplot(1, 2, 2)  # 1 row, 2 columns, position 2
 plt.imshow(cv2.cvtColor(flipped_image_vertical, cv2.COLOR_BGR2RGB))
 plt.title('Flipped Vertically')
 plt.axis('off')
+
+# Show both images
+plt.show()
+
 ```
 
-![image](https://github.com/user-attachments/assets/e5697fdf-4625-4072-9f6e-cba10ded7423)
+![Screenshot 2024-09-14 112408](https://github.com/user-attachments/assets/79c8a4ae-4792-4a88-abd2-c3f0c2915def)
 
 
 
