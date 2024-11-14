@@ -1,4 +1,4 @@
-# COLOR_CONVERSIONS_OF-IMAGE
+![image](https://github.com/user-attachments/assets/99b80b7f-0543-4c6a-b97a-67113b05f31f)# COLOR_CONVERSIONS_OF-IMAGE
 ## AIM
 Write a Python program using OpenCV that performs the following tasks:
 
@@ -83,17 +83,19 @@ cv2.destroyAllWindows()
 
 ### c)Draw a rectangle around a specific region in interest
 ```
-image3=image_resized.copy()
-start=(180,150)
-stop=(320,400)
-color=(100,255,100)
-thickness=10
-res2=cv2.rectangle(image3,start,stop,color,thickness)
+import cv2
+image3 = image_resized.copy()
+start = (0, 0)  # Top-left corner
+stop = (image3.shape[1], image3.shape[0]) 
+color = (100, 255, 100)
+thickness = 10
+res2 = cv2.rectangle(image3, start, stop, color, thickness)
 cv2.imshow('Image Window', res2)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
 ```
-![image](https://github.com/user-attachments/assets/3f8ce560-646e-467a-91b7-67ea12910bf9)
+
 
 <br>
 <br>
