@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/99b80b7f-0543-4c6a-b97a-67113b05f31f)# COLOR_CONVERSIONS_OF-IMAGE
 ## AIM
 Write a Python program using OpenCV that performs the following tasks:
 
@@ -95,6 +94,7 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 ```
+![image](https://github.com/user-attachments/assets/05817996-9e58-4e30-8804-a083f4eae601)
 
 
 <br>
